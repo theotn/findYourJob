@@ -1,6 +1,6 @@
 package com.comment.entity;
 
-import com.user.enums.LanguageLevel;
+import com.comment.enums.LanguageLevel;
 import jakarta.persistence.*;
 import lombok.Data;
 

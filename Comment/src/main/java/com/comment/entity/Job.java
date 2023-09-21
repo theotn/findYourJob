@@ -1,6 +1,6 @@
 package com.comment.entity;
 
-import com.user.enums.LocationType;
+import com.comment.enums.LocationType;
 import jakarta.persistence.*;
 import lombok.Data;
 
