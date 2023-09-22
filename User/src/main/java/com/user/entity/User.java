@@ -1,9 +1,7 @@
 package com.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.user.enums.Role;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -19,4 +17,7 @@ public class User {
     private String password;
 
     private Boolean isActive;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }
