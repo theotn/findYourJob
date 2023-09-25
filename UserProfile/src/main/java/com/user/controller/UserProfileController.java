@@ -1,8 +1,10 @@
 package com.user.controller;
 
+import com.user.dto.EducationDTO;
 import com.user.dto.UserDTO;
 import com.user.dto.UserProfileDTO;
 import com.user.exception.BadRequestException;
+import com.user.exception.NotFoundException;
 import com.user.service.UserProfileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,13 @@ public class UserProfileController {
     public ResponseEntity<UserProfileDTO> createUserProfile(@RequestParam("user") Integer userId) throws BadRequestException {
 
         UserProfileDTO userProfileDTO = userProfileService.createUserProfile(userId);
+        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/education")
+    public ResponseEntity<UserProfileDTO> addEducation(@RequestParam("profile") Integer profileId, @RequestBody EducationDTO educationDTO) throws BadRequestException, NotFoundException {
+
+        UserProfileDTO userProfileDTO = userProfileService.addEducation(profileId,educationDTO);
         return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
     }
 }
