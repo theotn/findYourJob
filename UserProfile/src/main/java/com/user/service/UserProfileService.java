@@ -1,5 +1,6 @@
 package com.user.service;
 
+import com.user.dto.CertificationDTO;
 import com.user.dto.EducationDTO;
 import com.user.dto.UserDTO;
 import com.user.dto.UserProfileDTO;
@@ -14,6 +15,8 @@ public interface UserProfileService {
     UserProfileDTO createUserProfile(Integer userId) throws BadRequestException;
 
     UserProfileDTO addEducation(Integer profileId, EducationDTO educationDTO) throws NotFoundException;
+
+    UserProfileDTO addCertification(Integer profileId, CertificationDTO certificationDTO) throws NotFoundException;
 
 
 
