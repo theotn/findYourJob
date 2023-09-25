@@ -1,10 +1,13 @@
 package com.user.service.impl;
 
+import com.user.dto.EducationDTO;
 import com.user.dto.UserDTO;
 import com.user.dto.UserProfileDTO;
+import com.user.entity.Education;
 import com.user.entity.User;
 import com.user.entity.UserProfile;
 import com.user.exception.BadRequestException;
+import com.user.exception.NotFoundException;
 import com.user.repository.UserProfileRepository;
 import com.user.service.UserProfileService;
 import jakarta.transaction.Transactional;
@@ -14,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -40,6 +44,21 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfile.setUser(user);
 
         userProfileRepository.save(userProfile);
+
+        return modelMapper.map(userProfile,UserProfileDTO.class);
+    }
+
+    @Override
+    public UserProfileDTO addEducation(Integer profileId,EducationDTO educationDTO) throws NotFoundException {
+
+        Optional<UserProfile> userProfileOptional = userProfileRepository.findById(profileId);
+        UserProfile userProfile = userProfileOptional.orElseThrow(()-> new NotFoundException("Profile not found!"));
+
+        EducationDTO educationResponse = restTemplate.postForObject("http://localhost:8400/education",educationDTO, EducationDTO.class);
+
+        Education education = modelMapper.map(educationResponse,Education.class);
+        userProfile.getEducation().add(education);
+
 
         return modelMapper.map(userProfile,UserProfileDTO.class);
     }
