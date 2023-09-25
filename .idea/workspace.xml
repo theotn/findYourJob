@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8bf55ef1-d484-4472-8a1d-cdf714e58fd5" name="Changes" comment="commit 2">
+    <list default="true" id="8bf55ef1-d484-4472-8a1d-cdf714e58fd5" name="Changes" comment="commit 13">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -19,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -43,14 +43,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/theo.tutungiu/Desktop/Cinema_MicroService&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/theo.tutungiu/Downloads/Bookstore/findYourJob/UserProfile/src/main/java/com/user"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\theo.tutungiu\Downloads\Bookstore\findYourJob\UserProfile\src\main\java\com\user" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.comment.enums" />
+      <recent name="com.job.enums" />
+      <recent name="com.user.enums" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.UserProfileApplication">
+    <configuration name="EducationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.EducationApplication" />
+      <module name="Education" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.education.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.user.UserApplication" />
+      <module name="User" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserProfileApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.user.UserProfileApplication" />
       <module name="UserProfile" />
@@ -67,6 +104,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserProfileApplication" />
+        <item itemvalue="Application.EducationApplication" />
+        <item itemvalue="Application.UserApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -100,7 +139,42 @@
       <option name="project" value="LOCAL" />
       <updated>1695285750262</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit adaugare Role">
+      <created>1695383078048</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695383078048</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit creare DTO, validari, signUp, login">
+      <created>1695389900395</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695389900395</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit 11">
+      <created>1695642279504</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695642279504</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit 12">
+      <created>1695650281697</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695650281697</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit 13">
+      <created>1695654266570</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695654266570</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +203,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit 1" />
     <MESSAGE value="commit 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 2" />
+    <MESSAGE value="commit adaugare Role" />
+    <MESSAGE value="commit creare DTO, validari, signUp, login" />
+    <MESSAGE value="commit 11" />
+    <MESSAGE value="commit 12" />
+    <MESSAGE value="commit 13" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 13" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/findYourJob$UserApplication.ic" NAME="UserApplication Coverage Results" MODIFIED="1695389841266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.user.*</FILTER>
+    </SUITE>
   </component>
 </project>
