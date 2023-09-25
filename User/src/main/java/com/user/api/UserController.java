@@ -1,33 +1,46 @@
 package com.user.api;
 
 import com.user.dto.UserDTO;
+import com.user.entity.User;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
 import com.user.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
 @Validated
 public class UserController {
 
-    UserService userService;
+    private UserService userService;
 
+    private RestTemplate restTemplate;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RestTemplate restTemplate) {
         this.userService = userService;
+        this.restTemplate = restTemplate;
     }
 
     @PostMapping("/signUp")
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) throws BadRequestException {
 
         UserDTO user = userService.createUser(userDTO);
+        Map<String,Integer> params = new HashMap<>();
+        params.put("user",user.getId());
+
+        restTemplate.postForObject("http://localhost:8100/userProfile?user={user}", new User(),Object.class,params);
+
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

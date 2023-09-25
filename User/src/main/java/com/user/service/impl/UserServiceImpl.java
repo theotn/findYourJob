@@ -58,9 +58,6 @@ public class UserServiceImpl implements UserService {
             user.setRole(Role.USER);
             userRepository.save(user);
 
-            restTemplate.postForObject("http://localhost:8100/userProfile",user,Object.class);
-
-
         }else {
 
             user.setRole(Role.COMPANY);

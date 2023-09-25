@@ -10,6 +10,10 @@ import com.user.service.UserProfileService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -19,19 +23,22 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private ModelMapper modelMapper;
 
-    public UserProfileServiceImpl(UserProfileRepository userProfileRepository, ModelMapper modelMapper) {
+    private RestTemplate restTemplate;
+
+    public UserProfileServiceImpl(UserProfileRepository userProfileRepository, ModelMapper modelMapper, RestTemplate restTemplate) {
         this.userProfileRepository = userProfileRepository;
         this.modelMapper = modelMapper;
+        this.restTemplate = restTemplate;
     }
 
     @Override
-    public UserProfileDTO createUserProfile(UserDTO userDTO) throws BadRequestException {
+    public UserProfileDTO createUserProfile(Integer userId) throws BadRequestException {
 
-        if(userDTO==null) throw new BadRequestException("User not found!");
+        Map<String,Integer> params = new HashMap<>();
+        params.put("user",userId);
 
+        User user = restTemplate.getForObject("http://localhost:8000/user?user={user}",User.class,params);
         UserProfile userProfile = new UserProfile();
-
-        User user = modelMapper.map(userDTO,User.class);
         userProfile.setUser(user);
 
         userProfileRepository.save(userProfile);

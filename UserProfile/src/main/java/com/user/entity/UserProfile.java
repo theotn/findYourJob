@@ -46,7 +46,7 @@ public class UserProfile {
     private List<UserProfileJob> jobs;
 
     @OneToOne
-    @JoinColumn(name = "user",insertable = false,updatable = false)
+    @JoinColumn(name = "user")
     private User user;
 
 

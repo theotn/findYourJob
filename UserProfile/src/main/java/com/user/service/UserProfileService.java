@@ -8,5 +8,5 @@ import com.user.exception.BadRequestException;
 
 public interface UserProfileService {
 
-    UserProfileDTO createUserProfile(UserDTO userDTO) throws BadRequestException;
+    UserProfileDTO createUserProfile(Integer userId) throws BadRequestException;
 }
