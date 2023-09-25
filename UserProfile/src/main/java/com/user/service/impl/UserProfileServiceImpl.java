@@ -20,9 +20,7 @@ import java.util.Map;
 public class UserProfileServiceImpl implements UserProfileService {
 
     private UserProfileRepository userProfileRepository;
-
     private ModelMapper modelMapper;
-
     private RestTemplate restTemplate;
 
     public UserProfileServiceImpl(UserProfileRepository userProfileRepository, ModelMapper modelMapper, RestTemplate restTemplate) {

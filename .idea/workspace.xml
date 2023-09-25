@@ -10,6 +10,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Certification/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Certification/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Certification/src/main/java/com/certification/CertificationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Certification/src/main/java/com/certification/CertificationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -39,17 +42,29 @@
     </option>
   </component>
   <component name="ProjectId" id="2VhN5Fc3fxocxOkGhwZcHDdGSNC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/theo.tutungiu/Desktop/Cinema_MicroService&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/florina.trocaru/Desktop/Projects/findYourJob/Certification/src/main/java/com/certification/utility"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\florina.trocaru\Desktop\Projects\findYourJob\Certification\src\main\java\com\certification\utility" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.certification.exception" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="UserProfileApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.user.UserProfileApplication" />
