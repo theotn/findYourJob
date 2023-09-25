@@ -11,6 +11,9 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,14 +25,22 @@ public class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    private RestTemplate restTemplate;
+
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.restTemplate = restTemplate;
     }
 
     @Override
     public UserDTO createUser(UserDTO userDTO) throws BadRequestException {
+
+        if(userDTO.getEmail()==null || userDTO.getEmail().isEmpty() || userDTO.getPassword()==null || userDTO.getPassword().isEmpty()) {
+
+            throw new BadRequestException("Please provide credentials!");
+        }
 
         if(userRepository.existsByEmail(userDTO.getEmail())){
 
@@ -45,10 +56,17 @@ public class UserServiceImpl implements UserService {
         if (userDTO.getRole()== Role.USER){
 
             user.setRole(Role.USER);
+            userRepository.save(user);
 
-        }else user.setRole(Role.COMPANY);
+            restTemplate.postForObject("http://localhost:8100/userProfile",user,Object.class);
 
-        userRepository.save(user);
+
+        }else {
+
+            user.setRole(Role.COMPANY);
+            userRepository.save(user);
+        }
+
 
         UserDTO userCreated = modelMapper.map(user,UserDTO.class);
         userCreated.setPassword(null);
@@ -57,7 +75,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO loginUser(UserDTO userDTO) throws NotFoundException {
+    public UserDTO loginUser(UserDTO userDTO) throws NotFoundException, BadRequestException {
+
+        if(userDTO.getEmail()==null || userDTO.getEmail().isEmpty() || userDTO.getPassword()==null || userDTO.getPassword().isEmpty()) {
+
+            throw new BadRequestException("Please provide credentials!");
+        }
 
         User userRepo = userRepository.findByEmail(userDTO.getEmail());
 
@@ -68,7 +91,50 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-       throw new NotFoundException("There is no user with this credentials!");
+       throw new NotFoundException("The credentials provided are incorrect!");
 
+    }
+
+    @Override
+    public UserDTO getUser(Integer userId) throws NotFoundException {
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+
+        return modelMapper.map(user,UserDTO.class);
+    }
+
+    @Override
+    public UserDTO updateUser(Integer userId, UserDTO userDTO) throws NotFoundException, BadRequestException {
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+
+        if(userDTO.getEmail()!=null){
+
+            if (!userRepository.existsByEmail(userDTO.getEmail())) {
+                user.setEmail(userDTO.getEmail());
+            }else{
+                throw new BadRequestException("This email is already used!");
+            }
+
+        }
+
+        if(userDTO.getPassword()!=null){
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        }
+
+        return modelMapper.map(user,UserDTO.class);
+    }
+
+    @Override
+    public UserDTO deleteUser(Integer userId) throws NotFoundException {
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+
+        userRepository.delete(user);
+
+        return modelMapper.map(user,UserDTO.class);
     }
 }

@@ -15,11 +15,9 @@ public class UserDTO {
 
     private Integer id;
 
-    @NotEmpty(message = "{user.email.absent}")
     @Email(message = "{user.email.invalid}")
     private String email;
 
-    @NotEmpty(message = "{user.password.absent}")
     @Pattern(regexp = "(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}",message = "{user.password.invalid}")
     private String password;
 
