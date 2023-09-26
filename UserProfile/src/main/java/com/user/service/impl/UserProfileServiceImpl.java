@@ -82,6 +82,8 @@ public class UserProfileServiceImpl implements UserProfileService {
             certificationDTOList = addCertification(userProfile, userProfileDTO.getCertificationDTO());
         }
 
+
+
         UserProfileDTO profile = modelMapper.map(userProfile, UserProfileDTO.class);
         profile.setEducationDTO(educationDTOList);
         profile.setCertificationDTO(certificationDTOList);
