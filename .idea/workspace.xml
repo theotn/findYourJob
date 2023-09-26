@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c03467e-4d30-4a3b-b7e1-7b1ac2206b49" name="Changes" comment="urmeaza experience de adaugat">
+    <list default="true" id="3c03467e-4d30-4a3b-b7e1-7b1ac2206b49" name="Changes" comment="commit 17">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experience/src/main/java/com/experience/service/ExperienceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Experience/src/main/java/com/experience/service/ExperienceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experience/src/main/java/com/experience/service/impl/ExperienceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Experience/src/main/java/com/experience/service/impl/ExperienceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/controller/UserProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/UserProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +60,17 @@
       <recent name="C:\Users\florina.trocaru\Desktop\Projects\findYourJob\Certification\src\main\java\com\certification\utility" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.user.dto" />
       <recent name="com.certification.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CertificationApplication">
-    <configuration name="CertificationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.certification.CertificationApplication" />
-      <module name="Certification" />
+  <component name="RunManager" selected="Application.UserProfileApplication">
+    <configuration name="EducationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.education.EducationApplication" />
+      <module name="Education" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.certification.*" />
+          <option name="PATTERN" value="com.education.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -72,12 +78,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EducationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.education.EducationApplication" />
-      <module name="Education" />
+    <configuration name="ExperienceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.experience.ExperienceApplication" />
+      <module name="Experience" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.education.*" />
+          <option name="PATTERN" value="com.experience.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.user.UserApplication" />
+      <module name="User" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,9 +119,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CertificationApplication" />
         <item itemvalue="Application.UserProfileApplication" />
+        <item itemvalue="Application.ExperienceApplication" />
         <item itemvalue="Application.EducationApplication" />
+        <item itemvalue="Application.UserApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -136,28 +156,35 @@
       <option name="project" value="LOCAL" />
       <updated>1695285750262</updated>
     </task>
-    <task id="LOCAL-00004" summary="commit 2">
-      <created>1695719767041</created>
+    <task id="LOCAL-00004" summary="commit 15">
+      <created>1695718275848</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1695719767041</updated>
+      <updated>1695718275848</updated>
     </task>
-    <task id="LOCAL-00005" summary="urmeaza experience de adaugat">
-      <created>1695725025482</created>
+    <task id="LOCAL-00005" summary="commit 15">
+      <created>1695718297851</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1695725025482</updated>
+      <updated>1695718297851</updated>
     </task>
-    <task id="LOCAL-00006" summary="urmeaza experience de adaugat">
-      <created>1695729905036</created>
+    <task id="LOCAL-00006" summary="commit 16">
+      <created>1695719418443</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1695729905036</updated>
+      <updated>1695719418443</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit 17">
+      <created>1695719775841</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695719775841</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,8 +213,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit 1" />
     <MESSAGE value="commit 2" />
-    <MESSAGE value="urmeaza experience de adaugat" />
-    <option name="LAST_COMMIT_MESSAGE" value="urmeaza experience de adaugat" />
+    <MESSAGE value="commit 15" />
+    <MESSAGE value="commit 16" />
+    <MESSAGE value="commit 17" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 17" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/findYourJob$UserApplication.ic" NAME="UserApplication Coverage Results" MODIFIED="1695389841266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

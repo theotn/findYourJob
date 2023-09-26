@@ -1,9 +1,6 @@
 package com.user.service;
 
-import com.user.dto.CertificationDTO;
-import com.user.dto.EducationDTO;
-import com.user.dto.UserDTO;
-import com.user.dto.UserProfileDTO;
+import com.user.dto.*;
 import com.user.entity.Education;
 import com.user.entity.User;
 import com.user.entity.UserProfile;

@@ -1,9 +1,6 @@
 package com.user.service.impl;
 
-import com.user.dto.CertificationDTO;
-import com.user.dto.EducationDTO;
-import com.user.dto.UserDTO;
-import com.user.dto.UserProfileDTO;
+import com.user.dto.*;
 import com.user.entity.*;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
@@ -82,11 +79,15 @@ public class UserProfileServiceImpl implements UserProfileService {
             certificationDTOList = addCertification(userProfile, userProfileDTO.getCertificationDTO());
         }
 
-
+        List<ExperienceDTO> experienceDTOList = new ArrayList<>();
+        if(userProfileDTO.getExperienceDTO()!=null && !userProfileDTO.getExperienceDTO().isEmpty()){
+            experienceDTOList = addExperience(userProfile,userProfileDTO.getExperienceDTO());
+        }
 
         UserProfileDTO profile = modelMapper.map(userProfile, UserProfileDTO.class);
         profile.setEducationDTO(educationDTOList);
         profile.setCertificationDTO(certificationDTOList);
+        profile.setExperienceDTO(experienceDTOList);
 
         return profile;
     }
@@ -117,5 +118,18 @@ public class UserProfileServiceImpl implements UserProfileService {
         }
         return certificationDTOList;
     }
+
+    public List<ExperienceDTO> addExperience(UserProfile userProfile, List<ExperienceDTO> experienceDTOS) throws NotFoundException {
+
+        List<ExperienceDTO> experienceDTOList = new ArrayList<>();
+        for(ExperienceDTO e : experienceDTOS) {
+            ExperienceDTO experienceResponse = restTemplate.postForObject("http://localhost:8500/experience", e, ExperienceDTO.class);
+            Experience experience = modelMapper.map(experienceResponse, Experience.class);
+            userProfile.getExperiences().add(experience);
+            experienceDTOList.add(experienceResponse);
+        }
+        return experienceDTOList;
+    }
+
 
 }
