@@ -17,8 +17,4 @@ public class Language {
     @Enumerated(value = EnumType.STRING)
     private LanguageLevel languageLevel;
 
-
-
-
-
 }
