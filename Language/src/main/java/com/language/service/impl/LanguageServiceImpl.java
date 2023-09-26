@@ -60,7 +60,7 @@ public class LanguageServiceImpl implements LanguageService {
     public LanguageDTO deleteLanguage(Integer languageId) throws NotFoundException {
 
        Optional<Language> languageOptional = languageRepository.findById(languageId);
-       Language language = languageOptional.orElseThrow(()-> new NotFoundException("Not found!"));
+       Language language = languageOptional.orElseThrow(()-> new NotFoundException("Language Not found!"));
 
        languageRepository.delete(language);
 

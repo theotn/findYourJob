@@ -58,7 +58,7 @@ public class CertificationServiceImpl implements CertificationService {
     public CertificationDTO deleteCertification(Integer certificationId) throws NotFoundException {
 
         Optional<Certification> certificationOptional = certificationRepository.findById(certificationId);
-        Certification certification = certificationOptional.orElseThrow(() -> new NotFoundException("Not found!"));
+        Certification certification = certificationOptional.orElseThrow(() -> new NotFoundException("Certification Not found!"));
 
         certificationRepository.delete(certification);
         return modelMapper.map(certification, CertificationDTO.class);

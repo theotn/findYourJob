@@ -69,6 +69,17 @@ public class ExceptionControllerAdvice {
         return new ResponseEntity<>(errorInfo, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorInfo> exceptionHandler(Exception exception) {
+        ErrorInfo errorInfo = new ErrorInfo();
+        String message = exception.getMessage();
+        errorInfo.setErrorMessage(message);
+        errorInfo.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        errorInfo.setTimeStamp(LocalDateTime.now());
+
+        return new ResponseEntity<>(errorInfo, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 
 }
 
