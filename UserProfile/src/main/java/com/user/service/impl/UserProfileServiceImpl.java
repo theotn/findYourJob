@@ -37,6 +37,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         params.put("user",userId);
 
         User user = restTemplate.getForObject("http://localhost:8000/user?user={user}",User.class,params);
+
         UserProfile userProfile = new UserProfile();
         userProfile.setUser(user);
 
@@ -58,78 +59,22 @@ public class UserProfileServiceImpl implements UserProfileService {
         if(userProfileDTO.getDescription() != null) userProfile.setDescription(userProfileDTO.getDescription());
 
         if(!userProfileDTO.getSkills().isEmpty()){
-            for(String skill : userProfileDTO.getSkills()) {
-                userProfile.getSkills().add(skill);
-            }
+
+            userProfile.setSkills(userProfileDTO.getSkills());
         }
         if(!userProfileDTO.getDomains().isEmpty()){
-            for(String domain : userProfileDTO.getDomains()) {
-                userProfile.getDomains().add(domain);
-            }
+
+            userProfile.setDomains(userProfileDTO.getDomains());
         }
 
-        List<EducationDTO> educationDTOList = new ArrayList<>();
 
-        if(!userProfileDTO.getEducationDTO().isEmpty()) {
-            educationDTOList = addEducation(userProfile, userProfileDTO.getEducationDTO());
-        }
-
-        List<CertificationDTO> certificationDTOList = new ArrayList<>();
-        if(!userProfileDTO.getCertificationDTO().isEmpty()){
-            certificationDTOList = addCertification(userProfile, userProfileDTO.getCertificationDTO());
-        }
-
-        List<ExperienceDTO> experienceDTOList = new ArrayList<>();
-        if(userProfileDTO.getExperienceDTO()!=null && !userProfileDTO.getExperienceDTO().isEmpty()){
-            experienceDTOList = addExperience(userProfile,userProfileDTO.getExperienceDTO());
-        }
 
         UserProfileDTO profile = modelMapper.map(userProfile, UserProfileDTO.class);
-        profile.setEducationDTO(educationDTOList);
-        profile.setCertificationDTO(certificationDTOList);
-        profile.setExperienceDTO(experienceDTOList);
 
         return profile;
     }
 
 
-    public List<EducationDTO> addEducation(UserProfile userProfile, List<EducationDTO> educationDTO) throws NotFoundException {
-
-        List<EducationDTO> educationDTOList = new ArrayList<>();
-
-        for(EducationDTO e : educationDTO) {
-            EducationDTO educationResponse = restTemplate.postForObject("http://localhost:8400/education", e, EducationDTO.class);
-            Education education = modelMapper.map(educationResponse,Education.class);
-            userProfile.getEducation().add(education);
-            educationDTOList.add(educationResponse);
-        }
-
-        return educationDTOList;
-    }
-
-    public List<CertificationDTO> addCertification(UserProfile userProfile, List<CertificationDTO> certificationDTO) throws NotFoundException {
-
-        List<CertificationDTO> certificationDTOList = new ArrayList<>();
-        for(CertificationDTO c : certificationDTO) {
-            CertificationDTO certificationResponse = restTemplate.postForObject("http://localhost:8200/certification", c, CertificationDTO.class);
-            Certification certification = modelMapper.map(certificationResponse, Certification.class);
-            userProfile.getCertifications().add(certification);
-            certificationDTOList.add(certificationResponse);
-        }
-        return certificationDTOList;
-    }
-
-    public List<ExperienceDTO> addExperience(UserProfile userProfile, List<ExperienceDTO> experienceDTOS) throws NotFoundException {
-
-        List<ExperienceDTO> experienceDTOList = new ArrayList<>();
-        for(ExperienceDTO e : experienceDTOS) {
-            ExperienceDTO experienceResponse = restTemplate.postForObject("http://localhost:8500/experience", e, ExperienceDTO.class);
-            Experience experience = modelMapper.map(experienceResponse, Experience.class);
-            userProfile.getExperiences().add(experience);
-            experienceDTOList.add(experienceResponse);
-        }
-        return experienceDTOList;
-    }
 
 
 }

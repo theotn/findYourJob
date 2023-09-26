@@ -36,6 +36,7 @@ public class UserController {
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) throws BadRequestException {
 
         UserDTO user = userService.createUser(userDTO);
+
         Map<String,Integer> params = new HashMap<>();
         params.put("user",user.getId());
 
