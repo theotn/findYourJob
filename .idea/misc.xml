@@ -5,12 +5,12 @@
       <list>
         <option value="$PROJECT_DIR$/User/pom.xml" />
         <option value="$PROJECT_DIR$/UserProfile/pom.xml" />
-        <option value="$PROJECT_DIR$/Certification/pom.xml" />
-        <option value="$PROJECT_DIR$/Comment/pom.xml" />
-        <option value="$PROJECT_DIR$/Education/pom.xml" />
         <option value="$PROJECT_DIR$/Language/pom.xml" />
-        <option value="$PROJECT_DIR$/Experience/pom.xml" />
         <option value="$PROJECT_DIR$/Job/pom.xml" />
+        <option value="$PROJECT_DIR$/Experience/pom.xml" />
+        <option value="$PROJECT_DIR$/Education/pom.xml" />
+        <option value="$PROJECT_DIR$/Comment/pom.xml" />
+        <option value="$PROJECT_DIR$/Certification/pom.xml" />
       </list>
     </option>
   </component>
