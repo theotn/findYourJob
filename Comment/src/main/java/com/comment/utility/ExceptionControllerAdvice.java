@@ -27,8 +27,6 @@ public class ExceptionControllerAdvice {
         error.setErrorMessage(errorMsg);
         error.setErrorCode(HttpStatus.BAD_REQUEST.value());
         error.setTimeStamp(LocalDateTime.now());
-
-
         return new ResponseEntity<ErrorInfo>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
