@@ -25,4 +25,5 @@ public class UserDTO {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
 }
