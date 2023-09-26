@@ -1,13 +1,7 @@
 package com.user.service.impl;
 
-import com.user.dto.CertificationDTO;
-import com.user.dto.EducationDTO;
-import com.user.dto.UserDTO;
-import com.user.dto.UserProfileDTO;
-import com.user.entity.Certification;
-import com.user.entity.Education;
-import com.user.entity.User;
-import com.user.entity.UserProfile;
+import com.user.dto.*;
+import com.user.entity.*;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
 import com.user.repository.UserProfileRepository;
@@ -77,5 +71,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         return modelMapper.map(userProfile,UserProfileDTO.class);
     }
+
+
 
 }
