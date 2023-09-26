@@ -7,13 +7,15 @@ import com.user.entity.UserProfile;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
 
+import java.util.List;
+
 public interface UserProfileService {
 
     UserProfileDTO createUserProfile(Integer userId) throws BadRequestException;
+    UserProfileDTO updateUserProfile(Integer userProfileId, UserProfileDTO userProfileDTO) throws NotFoundException;
+//    UserProfileDTO addEducation(List<EducationDTO> educationDTO) throws NotFoundException;
 
-    UserProfileDTO addEducation(Integer profileId, EducationDTO educationDTO) throws NotFoundException;
-
-    UserProfileDTO addCertification(Integer profileId, CertificationDTO certificationDTO) throws NotFoundException;
+//    UserProfileDTO addCertification(Integer profileId, CertificationDTO certificationDTO) throws NotFoundException;
 
 
 

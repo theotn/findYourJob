@@ -1,6 +1,9 @@
 package com.user.controller;
 
-import com.user.dto.*;
+import com.user.dto.CertificationDTO;
+import com.user.dto.EducationDTO;
+import com.user.dto.UserDTO;
+import com.user.dto.UserProfileDTO;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
 import com.user.service.UserProfileService;
@@ -26,25 +29,11 @@ public class UserProfileController {
         UserProfileDTO userProfileDTO = userProfileService.createUserProfile(userId);
         return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
     }
+    @PatchMapping
+    public ResponseEntity<UserProfileDTO> updateUserProfile(@RequestParam("profile") Integer profileId, @RequestBody UserProfileDTO userProfile) throws NotFoundException {
+        UserProfileDTO userProfileDTO = userProfileService.updateUserProfile(profileId, userProfile);
+        return new ResponseEntity<>(userProfileDTO, HttpStatus.OK);
+    }
 
-//    @PostMapping("/education")
-//    public ResponseEntity<UserProfileDTO> addEducation(@RequestParam("profile") Integer profileId, @RequestBody EducationDTO educationDTO) throws NotFoundException {
-//
-//        UserProfileDTO userProfileDTO = userProfileService.addEducation(profileId,educationDTO);
-//        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
-//    }
-//
-//    @PostMapping("/certification")
-//    public ResponseEntity<UserProfileDTO> addCertification(@RequestParam("profile") Integer profileId, @RequestBody CertificationDTO certificationDTO) throws NotFoundException {
-//
-//        UserProfileDTO userProfileDTO = userProfileService.addCertification(profileId, certificationDTO);
-//        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
-//    }
-//
-//    @PostMapping("/experience")
-//    public ResponseEntity<UserProfileDTO> addExperience(@RequestParam("profile") Integer profileId, @RequestBody ExperienceDTO experienceDTO) throws NotFoundException {
-//
-//        UserProfileDTO userProfileDTO = userProfileService.addExperience(profileId, experienceDTO);
-//        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
-//    }
+
 }
