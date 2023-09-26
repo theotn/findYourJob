@@ -1,8 +1,10 @@
 package com.user.service.impl;
 
+import com.user.dto.CertificationDTO;
 import com.user.dto.EducationDTO;
 import com.user.dto.UserDTO;
 import com.user.dto.UserProfileDTO;
+import com.user.entity.Certification;
 import com.user.entity.Education;
 import com.user.entity.User;
 import com.user.entity.UserProfile;
@@ -24,9 +26,7 @@ import java.util.Optional;
 public class UserProfileServiceImpl implements UserProfileService {
 
     private UserProfileRepository userProfileRepository;
-
     private ModelMapper modelMapper;
-
     private RestTemplate restTemplate;
 
     public UserProfileServiceImpl(UserProfileRepository userProfileRepository, ModelMapper modelMapper, RestTemplate restTemplate) {
@@ -56,12 +56,26 @@ public class UserProfileServiceImpl implements UserProfileService {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(profileId);
         UserProfile userProfile = userProfileOptional.orElseThrow(()-> new NotFoundException("Profile not found!"));
 
-        EducationDTO educationResponse = restTemplate.postForObject("http://localhost:8400/education",educationDTO, EducationDTO.class);
+        EducationDTO educationResponse = restTemplate.postForObject("http://localhost:8400/education", educationDTO, EducationDTO.class);
 
         Education education = modelMapper.map(educationResponse,Education.class);
         userProfile.getEducation().add(education);
 
+        return modelMapper.map(userProfile,UserProfileDTO.class);
+    }
+
+    @Override
+    public UserProfileDTO addCertification(Integer profileId, CertificationDTO certificationDTO) throws NotFoundException {
+
+        Optional<UserProfile> userProfileOptional = userProfileRepository.findById(profileId);
+        UserProfile userProfile = userProfileOptional.orElseThrow(()-> new NotFoundException("Profile not found!"));
+
+        CertificationDTO certificationResponse = restTemplate.postForObject("http://localhost:8200/certification", certificationDTO, CertificationDTO.class);
+
+        Certification certification = modelMapper.map(certificationResponse, Certification.class);
+        userProfile.getCertifications().add(certification);
 
         return modelMapper.map(userProfile,UserProfileDTO.class);
     }
+
 }

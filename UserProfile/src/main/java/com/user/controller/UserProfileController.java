@@ -1,5 +1,6 @@
 package com.user.controller;
 
+import com.user.dto.CertificationDTO;
 import com.user.dto.EducationDTO;
 import com.user.dto.UserDTO;
 import com.user.dto.UserProfileDTO;
@@ -30,9 +31,17 @@ public class UserProfileController {
     }
 
     @PostMapping("/education")
-    public ResponseEntity<UserProfileDTO> addEducation(@RequestParam("profile") Integer profileId, @RequestBody EducationDTO educationDTO) throws BadRequestException, NotFoundException {
+    public ResponseEntity<UserProfileDTO> addEducation(@RequestParam("profile") Integer profileId, @RequestBody EducationDTO educationDTO) throws NotFoundException {
 
         UserProfileDTO userProfileDTO = userProfileService.addEducation(profileId,educationDTO);
         return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
     }
+
+    @PostMapping("/certification")
+    public ResponseEntity<UserProfileDTO> addCertification(@RequestParam("profile") Integer profileId, @RequestBody CertificationDTO certificationDTO) throws NotFoundException {
+
+        UserProfileDTO userProfileDTO = userProfileService.addCertification(profileId, certificationDTO);
+        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
+    }
+
 }
