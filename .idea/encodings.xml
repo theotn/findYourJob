@@ -3,6 +3,12 @@
   <component name="Encoding">
     <file url="file://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-parent/3.1.0/src/main/resources" charset="UTF-8" />
     <file url="file://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-parent/3.1.3/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Certification/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Comment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Education/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Experience/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Job/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Language/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/User/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserProfile/src/main/java" charset="UTF-8" />
   </component>

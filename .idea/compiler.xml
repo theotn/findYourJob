@@ -2,21 +2,40 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="UserProfile" />
+        <module name="Comment" />
+        <module name="Experience" />
         <module name="User" />
+        <module name="UserProfile" />
+        <module name="Language" />
+        <module name="Education" />
+        <module name="Job" />
+        <module name="Certification" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Certification" target="17" />
+      <module name="Comment" target="17" />
+      <module name="Education" target="17" />
+      <module name="Experience" target="17" />
+      <module name="Job" target="17" />
+      <module name="Language" target="17" />
       <module name="User" target="17" />
       <module name="UserProfile" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Certification" options="-parameters" />
+      <module name="Comment" options="-parameters" />
+      <module name="Education" options="-parameters" />
+      <module name="Experience" options="-parameters" />
+      <module name="Job" options="-parameters" />
+      <module name="Language" options="-parameters" />
       <module name="User" options="-parameters" />
       <module name="UserProfile" options="-parameters" />
     </option>

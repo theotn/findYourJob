@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Certification/Certification.iml" filepath="$PROJECT_DIR$/Certification/Certification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Comment/Comment.iml" filepath="$PROJECT_DIR$/Comment/Comment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Education/Education.iml" filepath="$PROJECT_DIR$/Education/Education.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Experience/Experience.iml" filepath="$PROJECT_DIR$/Experience/Experience.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Job/Job.iml" filepath="$PROJECT_DIR$/Job/Job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Language/Language.iml" filepath="$PROJECT_DIR$/Language/Language.iml" />
       <module fileurl="file://$PROJECT_DIR$/User/User.iml" filepath="$PROJECT_DIR$/User/User.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserProfile/UserProfile.iml" filepath="$PROJECT_DIR$/UserProfile/UserProfile.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/findYourJob.iml" filepath="$PROJECT_DIR$/.idea/findYourJob.iml" />
