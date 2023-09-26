@@ -1,7 +1,7 @@
 package com.language.utility;
 
-import com.certification.exception.BadRequestException;
-import com.certification.exception.NotFoundException;
+import com.language.exception.BadRequestException;
+import com.language.exception.NotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.experience.utility;
 
-import com.certification.exception.BadRequestException;
-import com.certification.exception.NotFoundException;
+import com.experience.exception.BadRequestException;
+import com.experience.exception.NotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
