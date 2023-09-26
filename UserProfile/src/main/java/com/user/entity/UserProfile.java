@@ -24,20 +24,20 @@ public class UserProfile {
 
     private String description;
 
-    @OneToMany
-    private List<Experience> experiences;
+    @ElementCollection
+    private List<String> skills;
 
     @ElementCollection
     private List<String> domains;
+
+    @OneToMany
+    private List<Experience> experiences;
 
     @OneToMany
     private List<Education> education;
 
     @OneToMany
     private List<Certification> certifications;
-
-    @ElementCollection
-    private List<String> skills;
 
     @OneToMany
     private List<Language> languages;

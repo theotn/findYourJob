@@ -22,17 +22,17 @@ public class UserProfileDTO {
 
     private String description;
 
-    private List<Experience> experiences;
+    private List<String> skills;
 
     private List<String> domains;
 
-    private List<Education> education;
+    private List<ExperienceDTO> experienceDTO;
 
-    private List<Certification> certifications;
+    private List<EducationDTO> educationDTO;
 
-    private List<String> skills;
+    private List<CertificationDTO> certificationDTO;
 
-    private List<Language> languages;
+    private List<LanguageDTO> languageDTO;
 
     private List<UserProfileJob> jobs;
 

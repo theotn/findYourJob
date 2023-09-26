@@ -29,19 +29,11 @@ public class UserProfileController {
         UserProfileDTO userProfileDTO = userProfileService.createUserProfile(userId);
         return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
     }
-
-    @PostMapping("/education")
-    public ResponseEntity<UserProfileDTO> addEducation(@RequestParam("profile") Integer profileId, @RequestBody EducationDTO educationDTO) throws NotFoundException {
-
-        UserProfileDTO userProfileDTO = userProfileService.addEducation(profileId,educationDTO);
-        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
+    @PatchMapping
+    public ResponseEntity<UserProfileDTO> updateUserProfile(@RequestParam("profile") Integer profileId, @RequestBody UserProfileDTO userProfile) throws NotFoundException {
+        UserProfileDTO userProfileDTO = userProfileService.updateUserProfile(profileId, userProfile);
+        return new ResponseEntity<>(userProfileDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/certification")
-    public ResponseEntity<UserProfileDTO> addCertification(@RequestParam("profile") Integer profileId, @RequestBody CertificationDTO certificationDTO) throws NotFoundException {
-
-        UserProfileDTO userProfileDTO = userProfileService.addCertification(profileId, certificationDTO);
-        return new ResponseEntity<>(userProfileDTO, HttpStatus.CREATED);
-    }
 
 }
