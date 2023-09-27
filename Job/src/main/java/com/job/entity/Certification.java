@@ -17,13 +17,8 @@ public class Certification {
     private Integer id;
 
     private String institution;
-
     private String name;
-
     private LocalDate startDate;
-
     private LocalDate expirationDate;
-
     private String city;
-
 }

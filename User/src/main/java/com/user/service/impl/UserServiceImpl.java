@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService {
     return userCreated;
     }
 
+    //DE MODIFICAT
     @Override
     public UserDTO loginUser(UserDTO userDTO) throws NotFoundException, BadRequestException {
 
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService {
        throw new NotFoundException("The credentials provided are incorrect!");
 
     }
-
+    //DE MODIFICAT
     @Override
     public UserDTO getUser(Integer userId) throws NotFoundException {
 
@@ -124,6 +125,7 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user,UserDTO.class);
     }
 
+    //DE MODIFICAT
     @Override
     public UserDTO deleteUser(Integer userId) throws NotFoundException {
 
