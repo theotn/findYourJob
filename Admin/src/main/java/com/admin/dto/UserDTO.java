@@ -1,10 +1,9 @@
-package com.feedback.dto;
+package com.admin.dto;
 
-import com.feedback.enums.Role;
+import com.admin.enums.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data

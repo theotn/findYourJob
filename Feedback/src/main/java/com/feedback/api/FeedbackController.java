@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
@@ -28,4 +30,15 @@ public class FeedbackController {
         FeedbackDTO feedback = feedbackService.getFeedback(feedbackId);
         return new ResponseEntity<>(feedback, HttpStatus.OK);
     }
+    @GetMapping("/reports")
+    public ResponseEntity<List<FeedbackDTO>> getAllFeedbackReported() {
+        List<FeedbackDTO> feedbackList = feedbackService.getAllFeedbackReported();
+        return new ResponseEntity<>(feedbackList, HttpStatus.OK);
+    }
+    @PostMapping("/report")
+    public ResponseEntity<FeedbackDTO> reportFeedback(@RequestParam("feedback") Integer feedbackId, @RequestParam("user") Integer userId) throws NotFoundException {
+        FeedbackDTO feedback = feedbackService.reportFeedback(feedbackId, userId);
+        return new ResponseEntity<>(feedback, HttpStatus.OK);
+    }
+
 }

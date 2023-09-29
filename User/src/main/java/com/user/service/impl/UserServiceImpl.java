@@ -1,5 +1,6 @@
 package com.user.service.impl;
 
+import com.user.dto.FeedbackDTO;
 import com.user.dto.UserDTO;
 import com.user.entity.User;
 import com.user.enums.Role;
@@ -13,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -34,6 +37,7 @@ public class UserServiceImpl implements UserService {
         this.restTemplate = restTemplate;
     }
 
+    //DE MODIFICAT PT ACTIVARE
     @Override
     public UserDTO createUser(UserDTO userDTO) throws BadRequestException {
 
@@ -41,11 +45,14 @@ public class UserServiceImpl implements UserService {
 
             throw new BadRequestException("Please provide credentials!");
         }
-
+        if(userDTO.getPassword().matches("(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}")) {
+            throw new BadRequestException("Password must contain at least: one uppercase letter, one lowercase letter, one digit, one special character and minimum");
+        }
         if(userRepository.existsByEmail(userDTO.getEmail())){
 
             throw new BadRequestException("This email is already used!");
         }
+
 
         User user = new User();
 
@@ -135,5 +142,18 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
 
         return modelMapper.map(user,UserDTO.class);
+    }
+
+    @Override
+    public void reportFeedback(Integer userId, Integer feedbackId) throws NotFoundException {
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+
+        Map<String, Integer> params = new HashMap<>();
+        params.put("feedback", feedbackId);
+        params.put("user", userId);
+        FeedbackDTO feedbackDTO = restTemplate.postForObject("http://localhost:9200/feedback/report?feedback={feedback}&user={user}", new FeedbackDTO(), FeedbackDTO.class, params);
+
     }
 }

@@ -1,8 +1,6 @@
-package com.feedback.dto;
+package com.user.dto;
 
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class FeedbackDTO {
@@ -10,6 +8,5 @@ public class FeedbackDTO {
     private String description;
     private Integer stars;
     private Integer reports;
-    private UserDTO user;
-    private List<UserDTO> userReportList;
+    private UserDTO userDTO;
 }

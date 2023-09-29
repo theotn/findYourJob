@@ -1,4 +1,4 @@
-package com.feedback.dto;
+package com.admin.dto;
 
 import lombok.Data;
 

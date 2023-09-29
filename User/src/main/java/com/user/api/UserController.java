@@ -79,4 +79,11 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @PostMapping("/feedback")
+    public ResponseEntity<String> reportFeedback(@RequestParam("user") Integer userId, @RequestParam("feedback") Integer feedbackId) throws NotFoundException {
+
+        userService.reportFeedback(userId, feedbackId);
+        return new ResponseEntity<>("succes", HttpStatus.OK);
+    }
+
 }

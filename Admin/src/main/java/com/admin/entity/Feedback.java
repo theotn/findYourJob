@@ -1,4 +1,4 @@
-package com.feedback.entity;
+package com.admin.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,7 +17,9 @@ public class Feedback {
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
-
     @ElementCollection
     private List<Integer> userReport;
+
+    @OneToMany
+    private List<User> userReportList;
 }

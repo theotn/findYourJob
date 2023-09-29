@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -45,7 +43,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         feedbackRepository.save(feedback);
 
         FeedbackDTO feedbackReturned = modelMapper.map(feedback, FeedbackDTO.class);
-        feedbackReturned.setUserDTO(userDTO);
+        feedbackReturned.setUser(userDTO);
 
 
         return feedbackReturned;
@@ -56,6 +54,49 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         Optional<Feedback> feedbackOptional = feedbackRepository.findById(feedbackId);
         Feedback feedback = feedbackOptional.orElseThrow(() -> new NotFoundException("Not found!"));
+
+        return modelMapper.map(feedback, FeedbackDTO.class);
+    }
+
+    @Override
+    public List<FeedbackDTO> getAllFeedbackReported() {
+
+        List<Feedback> feedbackList = feedbackRepository.getAllFeedbackReported();
+
+        List<FeedbackDTO> feedbackDTOList = new ArrayList<>();
+
+        for(Feedback f : feedbackList) {
+            FeedbackDTO feedbackDTO = modelMapper.map(f, FeedbackDTO.class);
+         //   feedbackDTO.setUserReport(f.getUserReport());
+
+            User userPost = f.getUser();
+            feedbackDTO.setUser(modelMapper.map(userPost, UserDTO.class));
+
+            List<UserDTO> userDTOS = new ArrayList<>();
+
+            for(Integer i: f.getUserReport()){
+
+                UserDTO userDTO = restTemplate.getForObject("http://localhost:8000/user?user="+i,UserDTO.class);
+                userDTOS.add(userDTO);
+            }
+            feedbackDTO.setUserReportList(userDTOS);
+
+            feedbackDTOList.add(feedbackDTO);
+        }
+
+        return feedbackDTOList;
+    }
+
+    @Override
+    public FeedbackDTO reportFeedback(Integer feedbackId, Integer userId) throws NotFoundException {
+
+        Optional<Feedback> feedbackOptional = feedbackRepository.findById(feedbackId);
+        Feedback feedback = feedbackOptional.orElseThrow(() -> new NotFoundException("Not found!"));
+
+        feedback.setReports(feedback.getReports()+1);
+
+        if(feedback.getUserReport().contains(userId)) throw new NotFoundException("This feedback has already been reported!");
+        else feedback.getUserReport().add(userId);
 
         return modelMapper.map(feedback, FeedbackDTO.class);
     }
