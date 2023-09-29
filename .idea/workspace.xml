@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c03467e-4d30-4a3b-b7e1-7b1ac2206b49" name="Changes" comment="add/delete certif,educ,language,exper + Utility ERROR 500">
+    <list default="true" id="3c03467e-4d30-4a3b-b7e1-7b1ac2206b49" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserProfile/src/main/java/com/user/service/impl/UserProfileServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695743856933</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit">
+      <created>1695885438008</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695885438008</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,7 +241,8 @@
     <MESSAGE value="commit 16" />
     <MESSAGE value="commit 17" />
     <MESSAGE value="add/delete certif,educ,language,exper + Utility ERROR 500" />
-    <option name="LAST_COMMIT_MESSAGE" value="add/delete certif,educ,language,exper + Utility ERROR 500" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/findYourJob$UserApplication.ic" NAME="UserApplication Coverage Results" MODIFIED="1695389841266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,19 +1,14 @@
 package com.user.service.impl;
-
 import com.user.dto.*;
 import com.user.entity.*;
 import com.user.exception.BadRequestException;
 import com.user.exception.NotFoundException;
 import com.user.repository.UserProfileRepository;
 import com.user.service.UserProfileService;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.OneToMany;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.time.LocalDate;
 import java.util.*;
 
 @Service
