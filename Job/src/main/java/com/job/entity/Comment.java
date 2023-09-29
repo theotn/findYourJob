@@ -13,11 +13,9 @@ public class Comment {
     private Integer id;
 
     private LocalDate date;
-
     private String text;
-
     private Integer reports;
 
     @ManyToOne
-    private UserProfile userProfile;
+    private User user;
 }

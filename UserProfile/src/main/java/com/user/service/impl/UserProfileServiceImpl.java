@@ -42,6 +42,54 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
+    public UserProfileDTO getUserProfile(Integer userId) throws NotFoundException {
+
+        Map<String, Integer> params = new HashMap<>();
+        params.put("user", userId);
+        UserDTO userDTO = restTemplate.getForObject("http://localhost:8000/user?user={user}", UserDTO.class, params);
+
+        UserProfile userProfile = userProfileRepository.findByUser(modelMapper.map(userDTO, User.class));
+
+        if(userProfile == null) throw new NotFoundException("User not found!");
+
+        List<Experience> experienceList = userProfile.getExperiences();
+        List<ExperienceDTO> experienceDTOList = new ArrayList<>();
+        for(Experience e : experienceList) {
+            ExperienceDTO experienceDTO = modelMapper.map(e, ExperienceDTO.class);
+            experienceDTOList.add(experienceDTO);
+        }
+
+        List<Education> educationList = userProfile.getEducation();
+        List<EducationDTO> educationDTOList = new ArrayList<>();
+        for(Education e : educationList) {
+            EducationDTO educationDTO = modelMapper.map(e, EducationDTO.class);
+            educationDTOList.add(educationDTO);
+        }
+
+        List<Certification> certificationList = userProfile.getCertifications();
+        List<CertificationDTO> certificationDTOList = new ArrayList<>();
+        for(Certification c : certificationList) {
+            CertificationDTO certificationDTO = modelMapper.map(c, CertificationDTO.class);
+            certificationDTOList.add(certificationDTO);
+        }
+
+        List<Language> languageList = userProfile.getLanguages();
+        List<LanguageDTO> languageDTOList = new ArrayList<>();
+        for(Language l : languageList) {
+            LanguageDTO languageDTO = modelMapper.map(l, LanguageDTO.class);
+            languageDTOList.add(languageDTO);
+        }
+
+        UserProfileDTO userProfileDTO = modelMapper.map(userProfile, UserProfileDTO.class);
+        userProfileDTO.setExperienceDTO(experienceDTOList);
+        userProfileDTO.setEducationDTO(educationDTOList);
+        userProfileDTO.setCertificationDTO(certificationDTOList);
+        userProfileDTO.setLanguageDTO(languageDTOList);
+
+        return userProfileDTO;
+    }
+
+    @Override
     public UserProfileDTO updateUserProfile(Integer userProfileId, UserProfileDTO userProfileDTO) throws NotFoundException {
 
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userProfileId);

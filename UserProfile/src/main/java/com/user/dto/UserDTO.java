@@ -11,12 +11,7 @@ import lombok.Data;
 public class UserDTO {
 
     private Integer id;
-
     private String email;
-
-    private String password;
-
     private Boolean isActive;
-
     private Role role;
 }

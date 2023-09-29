@@ -19,5 +19,5 @@ public class Comment {
     private Integer reports;
 
     @ManyToOne
-    private UserProfile userProfile;
+    private User user;
 }
