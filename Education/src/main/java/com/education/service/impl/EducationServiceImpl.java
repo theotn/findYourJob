@@ -20,6 +20,7 @@ public class EducationServiceImpl implements EducationService {
     private ModelMapper modelMapper;
 
     public EducationServiceImpl(EducationRepository educationRepository, ModelMapper modelMapper) {
+
         this.educationRepository = educationRepository;
         this.modelMapper = modelMapper;
     }
@@ -27,44 +28,45 @@ public class EducationServiceImpl implements EducationService {
     @Override
     public EducationDTO createEducation(EducationDTO educationDTO) {
 
-        Education education = modelMapper.map(educationDTO,Education.class);
+        Education education = modelMapper.map(educationDTO, Education.class);
         educationRepository.save(education);
 
-        return modelMapper.map(education,EducationDTO.class);
+        return modelMapper.map(education, EducationDTO.class);
     }
 
     @Override
     public EducationDTO getEducation(Integer educationId) throws NotFoundException {
 
         Optional<Education> educationOptional = educationRepository.findById(educationId);
-        Education education = educationOptional.orElseThrow(()->new NotFoundException("Not Found!"));
+        Education education = educationOptional.orElseThrow(() -> new NotFoundException("Not Found!"));
 
-        return modelMapper.map(education,EducationDTO.class);
+        return modelMapper.map(education, EducationDTO.class);
     }
 
     @Override
     public EducationDTO updateEducation(Integer educationId, EducationDTO educationDTO) throws NotFoundException {
 
         Optional<Education> educationOptional = educationRepository.findById(educationId);
-        Education education = educationOptional.orElseThrow(()->new NotFoundException("Not Found!"));
+        Education education = educationOptional.orElseThrow(() -> new NotFoundException("Not Found!"));
 
-        if(educationDTO.getInstitution()!=null) education.setInstitution(educationDTO.getInstitution());
-        if(educationDTO.getDegree()!=null) education.setDegree(educationDTO.getDegree());
-        if(educationDTO.getCity()!=null) education.setCity(educationDTO.getCity());
-        if(educationDTO.getStartDate()!=null) education.setStartDate(educationDTO.getStartDate());
-        if(educationDTO.getEndDate()!=null) education.setEndDate(educationDTO.getEndDate());
+        if (educationDTO.getInstitution() != null) education.setInstitution(educationDTO.getInstitution());
+        if (educationDTO.getDegree() != null) education.setDegree(educationDTO.getDegree());
+        if (educationDTO.getCity() != null) education.setCity(educationDTO.getCity());
+        if (educationDTO.getStartDate() != null) education.setStartDate(educationDTO.getStartDate());
+        if (educationDTO.getEndDate() != null) education.setEndDate(educationDTO.getEndDate());
 
-        return modelMapper.map(education,EducationDTO.class);
+        return modelMapper.map(education, EducationDTO.class);
     }
 
     @Override
     public EducationDTO deleteEducation(Integer educationId) throws NotFoundException {
 
         Optional<Education> educationOptional = educationRepository.findById(educationId);
-        Education education = educationOptional.orElseThrow(()->new NotFoundException("Not Found!"));
+        Education education = educationOptional.orElseThrow(() -> new NotFoundException("Not Found!"));
 
         educationRepository.delete(education);
-        return modelMapper.map(education,EducationDTO.class);
+
+        return modelMapper.map(education, EducationDTO.class);
     }
 
 }

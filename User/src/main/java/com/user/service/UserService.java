@@ -12,7 +12,7 @@ public interface UserService {
     UserDTO loginUser(UserDTO userDTO) throws NotFoundException, BadRequestException;
     UserDTO getUser(Integer userId) throws NotFoundException;
     UserDTO updateUser(Integer userId, UserDTO userDTO) throws NotFoundException, BadRequestException;
-    UserDTO deleteUser(Integer userId) throws NotFoundException;
+//    UserDTO disableUser(Integer userId) throws NotFoundException;
     void reportFeedback(Integer userId, Integer feedbackId) throws NotFoundException;
 
 }

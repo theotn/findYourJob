@@ -7,7 +7,10 @@ import com.education.exception.NotFoundException;
 public interface EducationService {
 
     EducationDTO createEducation(EducationDTO educationDTO);
+
     EducationDTO getEducation(Integer educationId) throws NotFoundException;
+
     EducationDTO updateEducation(Integer educationId, EducationDTO educationDTO) throws NotFoundException;
+
     EducationDTO deleteEducation(Integer educationId) throws NotFoundException;
 }

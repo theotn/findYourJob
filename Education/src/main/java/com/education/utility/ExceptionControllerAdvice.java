@@ -18,6 +18,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorInfo> exceptionHandler(MethodArgumentNotValidException exception) {
+
         ErrorInfo error = new ErrorInfo();
         error.setErrorMessage(exception.getMessage());
 
@@ -34,6 +35,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorInfo> eventExceptionHandler(BadRequestException exception) {
+
         ErrorInfo error = new ErrorInfo();
 
         error.setErrorMessage(exception.getMessage());
@@ -58,6 +60,7 @@ public class ExceptionControllerAdvice {
 
         @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorInfo> constraintViolationHandler(ConstraintViolationException exception) {
+
         ErrorInfo errorInfo = new ErrorInfo();
         String message = exception.getConstraintViolations()
                 .stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(", "));
@@ -71,6 +74,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorInfo> exceptionHandler(Exception exception) {
+
         ErrorInfo errorInfo = new ErrorInfo();
         String message = exception.getMessage();
         errorInfo.setErrorMessage(message);

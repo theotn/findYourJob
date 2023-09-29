@@ -18,10 +18,10 @@ import java.util.Optional;
 public class ExperienceServiceImpl implements ExperienceService {
 
     private ExperienceRepository experienceRepository;
-
     private ModelMapper modelMapper;
 
     public ExperienceServiceImpl(ExperienceRepository experienceRepository, ModelMapper modelMapper) {
+
         this.experienceRepository = experienceRepository;
         this.modelMapper = modelMapper;
     }
@@ -29,10 +29,10 @@ public class ExperienceServiceImpl implements ExperienceService {
     @Override
     public ExperienceDTO createExperience(ExperienceDTO experienceDTO) {
 
-        Experience experience = modelMapper.map(experienceDTO,Experience.class);
+        Experience experience = modelMapper.map(experienceDTO, Experience.class);
         experienceRepository.save(experience);
 
-        return modelMapper.map(experience,ExperienceDTO.class);
+        return modelMapper.map(experience, ExperienceDTO.class);
     }
 
     @Override
@@ -43,18 +43,19 @@ public class ExperienceServiceImpl implements ExperienceService {
 
         return modelMapper.map(experience, ExperienceDTO.class);
     }
+
     @Override
     public ExperienceDTO updateExperience(Integer experienceId, ExperienceDTO experienceDTO) throws NotFoundException {
 
         Optional<Experience> experienceOptional = experienceRepository.findById(experienceId);
         Experience experience = experienceOptional.orElseThrow(() -> new NotFoundException("Not found!"));
 
-        if(experienceDTO.getCompany() != null) experience.setCompany(experienceDTO.getCompany());
-        if(experienceDTO.getStartDate() != null) experience.setStartDate(experienceDTO.getStartDate());
-        if(experienceDTO.getEndDate() != null) experience.setEndDate(experienceDTO.getEndDate());
-        if(experienceDTO.getPosition() != null) experience.setPosition(experienceDTO.getPosition());
-        if(experienceDTO.getDescription() != null) experience.setDescription(experienceDTO.getDescription());
-        if(experienceDTO.getCity() != null) experience.setCity(experienceDTO.getCity());
+        if (experienceDTO.getCompany() != null) experience.setCompany(experienceDTO.getCompany());
+        if (experienceDTO.getStartDate() != null) experience.setStartDate(experienceDTO.getStartDate());
+        if (experienceDTO.getEndDate() != null) experience.setEndDate(experienceDTO.getEndDate());
+        if (experienceDTO.getPosition() != null) experience.setPosition(experienceDTO.getPosition());
+        if (experienceDTO.getDescription() != null) experience.setDescription(experienceDTO.getDescription());
+        if (experienceDTO.getCity() != null) experience.setCity(experienceDTO.getCity());
 
         return modelMapper.map(experience, ExperienceDTO.class);
     }
@@ -66,6 +67,7 @@ public class ExperienceServiceImpl implements ExperienceService {
         Experience experience = experienceOptional.orElseThrow(() -> new NotFoundException("Not found!"));
 
         experienceRepository.delete(experience);
+
         return modelMapper.map(experience, ExperienceDTO.class);
     }
 

@@ -65,19 +65,19 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PatchMapping
+    @PutMapping
     public ResponseEntity<UserDTO> updateUser(@RequestParam("user") Integer userId,@RequestBody UserDTO userDTO) throws BadRequestException, NotFoundException {
 
         UserDTO user = userService.updateUser(userId,userDTO);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public ResponseEntity<UserDTO> deleteUser(@RequestParam("user") Integer userId) throws NotFoundException {
-
-        UserDTO user = userService.deleteUser(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+//    @PatchMapping("/")
+//    public ResponseEntity<UserDTO> disableUser(@RequestParam("user") Integer userId) throws NotFoundException {
+//
+//        UserDTO user = userService.disableUser(userId);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
     @PostMapping("/feedback")
     public ResponseEntity<String> reportFeedback(@RequestParam("user") Integer userId, @RequestParam("feedback") Integer feedbackId) throws NotFoundException {

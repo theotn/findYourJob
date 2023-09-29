@@ -21,6 +21,7 @@ public class LanguageServiceImpl implements LanguageService {
     private ModelMapper modelMapper;
 
     public LanguageServiceImpl(LanguageRepository languageRepository, ModelMapper modelMapper) {
+
         this.languageRepository = languageRepository;
         this.modelMapper = modelMapper;
     }
@@ -29,41 +30,41 @@ public class LanguageServiceImpl implements LanguageService {
     public LanguageDTO createLanguage(LanguageDTO languageDTO) {
 
 
-        Language language = modelMapper.map(languageDTO,Language.class);
+        Language language = modelMapper.map(languageDTO, Language.class);
         languageRepository.save(language);
 
-        return modelMapper.map(language,LanguageDTO.class);
+        return modelMapper.map(language, LanguageDTO.class);
     }
 
     @Override
     public LanguageDTO getLanguage(Integer languageId) throws NotFoundException {
 
         Optional<Language> languageOptional = languageRepository.findById(languageId);
-        Language language = languageOptional.orElseThrow(()-> new NotFoundException("Not found!"));
+        Language language = languageOptional.orElseThrow(() -> new NotFoundException("Not found!"));
 
-        return modelMapper.map(language,LanguageDTO.class);
+        return modelMapper.map(language, LanguageDTO.class);
     }
 
     @Override
     public LanguageDTO updateLanguage(Integer languageId, LanguageDTO languageDTO) throws NotFoundException {
 
         Optional<Language> languageOptional = languageRepository.findById(languageId);
-        Language language = languageOptional.orElseThrow(()-> new NotFoundException("Not found!"));
+        Language language = languageOptional.orElseThrow(() -> new NotFoundException("Not found!"));
 
-        if(languageDTO.getName()!=null) language.setName(languageDTO.getName());
-        if(languageDTO.getLanguageLevel()!=null) language.setLanguageLevel(languageDTO.getLanguageLevel());
+        if (languageDTO.getName() != null) language.setName(languageDTO.getName());
+        if (languageDTO.getLanguageLevel() != null) language.setLanguageLevel(languageDTO.getLanguageLevel());
 
-        return modelMapper.map(language,LanguageDTO.class);
+        return modelMapper.map(language, LanguageDTO.class);
     }
 
     @Override
     public LanguageDTO deleteLanguage(Integer languageId) throws NotFoundException {
 
-       Optional<Language> languageOptional = languageRepository.findById(languageId);
-       Language language = languageOptional.orElseThrow(()-> new NotFoundException("Language Not found!"));
+        Optional<Language> languageOptional = languageRepository.findById(languageId);
+        Language language = languageOptional.orElseThrow(() -> new NotFoundException("Language Not found!"));
 
-       languageRepository.delete(language);
+        languageRepository.delete(language);
 
-       return modelMapper.map(language,LanguageDTO.class);
+        return modelMapper.map(language, LanguageDTO.class);
     }
 }

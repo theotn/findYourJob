@@ -1,4 +1,4 @@
-package com.user.utility;
+package com.admin.utility;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingAspect {
     public static final Log LOGGER = LogFactory.getLog(LoggingAspect.class);
-    @AfterThrowing(pointcut = "execution(* com.user.service.*.*(..))", throwing = "exception")
+    @AfterThrowing(pointcut = "execution(* com.admin.service.*.*(..))", throwing = "exception")
     public void logServiceException(Exception exception) {
         LOGGER.error(exception.getMessage(), exception);
     }

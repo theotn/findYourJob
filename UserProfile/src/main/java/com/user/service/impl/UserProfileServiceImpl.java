@@ -1,4 +1,5 @@
 package com.user.service.impl;
+
 import com.user.dto.*;
 import com.user.entity.*;
 import com.user.exception.BadRequestException;
@@ -9,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.*;
 
 @Service
@@ -20,6 +22,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     private RestTemplate restTemplate;
 
     public UserProfileServiceImpl(UserProfileRepository userProfileRepository, ModelMapper modelMapper, RestTemplate restTemplate) {
+
         this.userProfileRepository = userProfileRepository;
         this.modelMapper = modelMapper;
         this.restTemplate = restTemplate;
@@ -50,32 +53,32 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         UserProfile userProfile = userProfileRepository.findByUser(modelMapper.map(userDTO, User.class));
 
-        if(userProfile == null) throw new NotFoundException("User not found!");
+        if (userProfile == null) throw new NotFoundException("User not found!");
 
         List<Experience> experienceList = userProfile.getExperiences();
         List<ExperienceDTO> experienceDTOList = new ArrayList<>();
-        for(Experience e : experienceList) {
+        for (Experience e : experienceList) {
             ExperienceDTO experienceDTO = modelMapper.map(e, ExperienceDTO.class);
             experienceDTOList.add(experienceDTO);
         }
 
         List<Education> educationList = userProfile.getEducation();
         List<EducationDTO> educationDTOList = new ArrayList<>();
-        for(Education e : educationList) {
+        for (Education e : educationList) {
             EducationDTO educationDTO = modelMapper.map(e, EducationDTO.class);
             educationDTOList.add(educationDTO);
         }
 
         List<Certification> certificationList = userProfile.getCertifications();
         List<CertificationDTO> certificationDTOList = new ArrayList<>();
-        for(Certification c : certificationList) {
+        for (Certification c : certificationList) {
             CertificationDTO certificationDTO = modelMapper.map(c, CertificationDTO.class);
             certificationDTOList.add(certificationDTO);
         }
 
         List<Language> languageList = userProfile.getLanguages();
         List<LanguageDTO> languageDTOList = new ArrayList<>();
-        for(Language l : languageList) {
+        for (Language l : languageList) {
             LanguageDTO languageDTO = modelMapper.map(l, LanguageDTO.class);
             languageDTOList.add(languageDTO);
         }
@@ -110,7 +113,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 
             userProfile.setDomains(userProfileDTO.getDomains());
         }
-
 
         UserProfileDTO profile = modelMapper.map(userProfile, UserProfileDTO.class);
 
@@ -171,11 +173,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userProfileId);
         UserProfile userProfile = userProfileOptional.orElseThrow(() -> new NotFoundException("Profile not found!"));
 
-        Map<String,Integer> params = new HashMap<>();
-        params.put("education",educationId);
+        Map<String, Integer> params = new HashMap<>();
+        params.put("education", educationId);
 
-        EducationDTO educationDTO = restTemplate.getForObject("http://localhost:8400/education?education={education}",EducationDTO.class,params);
-        Education educationToRemove = modelMapper.map(educationDTO,Education.class);
+        EducationDTO educationDTO = restTemplate.getForObject("http://localhost:8400/education?education={education}", EducationDTO.class, params);
+        Education educationToRemove = modelMapper.map(educationDTO, Education.class);
 
         userProfile.getEducation().remove(educationToRemove);
 
@@ -188,11 +190,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userProfileId);
         UserProfile userProfile = userProfileOptional.orElseThrow(() -> new NotFoundException("Profile not found!"));
 
-        Map<String,Integer> params = new HashMap<>();
-        params.put("certification",certificationId);
+        Map<String, Integer> params = new HashMap<>();
+        params.put("certification", certificationId);
 
-        CertificationDTO certificationDTO = restTemplate.getForObject("http://localhost:8200/certification?certification={certification}",CertificationDTO.class,params);
-        Certification certificationToRemove = modelMapper.map(certificationDTO,Certification.class);
+        CertificationDTO certificationDTO = restTemplate.getForObject("http://localhost:8200/certification?certification={certification}", CertificationDTO.class, params);
+        Certification certificationToRemove = modelMapper.map(certificationDTO, Certification.class);
 
         userProfile.getCertifications().remove(certificationToRemove);
 
@@ -206,11 +208,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userProfileId);
         UserProfile userProfile = userProfileOptional.orElseThrow(() -> new NotFoundException("Profile not found!"));
 
-        Map<String,Integer> params = new HashMap<>();
-        params.put("experience",experienceId);
+        Map<String, Integer> params = new HashMap<>();
+        params.put("experience", experienceId);
 
-        ExperienceDTO experienceDTO = restTemplate.getForObject("http://localhost:8500/experience?experience={experience}",ExperienceDTO.class,params);
-        Experience experienceToRemove = modelMapper.map(experienceDTO,Experience.class);
+        ExperienceDTO experienceDTO = restTemplate.getForObject("http://localhost:8500/experience?experience={experience}", ExperienceDTO.class, params);
+        Experience experienceToRemove = modelMapper.map(experienceDTO, Experience.class);
 
         userProfile.getExperiences().remove(experienceToRemove);
 
@@ -223,11 +225,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userProfileId);
         UserProfile userProfile = userProfileOptional.orElseThrow(() -> new NotFoundException("Profile not found!"));
 
-        Map<String,Integer> params = new HashMap<>();
-        params.put("language",languageId);
+        Map<String, Integer> params = new HashMap<>();
+        params.put("language", languageId);
 
-        LanguageDTO languageDTO = restTemplate.getForObject("http://localhost:8700/language?language={language}",LanguageDTO.class,params);
-        Language languageToRemove = modelMapper.map(languageDTO,Language.class);
+        LanguageDTO languageDTO = restTemplate.getForObject("http://localhost:8700/language?language={language}", LanguageDTO.class, params);
+        Language languageToRemove = modelMapper.map(languageDTO, Language.class);
 
         userProfile.getLanguages().remove(languageToRemove);
 

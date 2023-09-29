@@ -41,18 +41,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO createUser(UserDTO userDTO) throws BadRequestException {
 
-        if(userDTO.getEmail()==null || userDTO.getEmail().isEmpty() || userDTO.getPassword()==null || userDTO.getPassword().isEmpty()) {
+        if (userDTO.getEmail() == null || userDTO.getEmail().isEmpty() || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
 
             throw new BadRequestException("Please provide credentials!");
         }
-        if(userDTO.getPassword().matches("(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}")) {
-            throw new BadRequestException("Password must contain at least: one uppercase letter, one lowercase letter, one digit, one special character and minimum");
+        if (!userDTO.getPassword().matches("(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}")) {
+            throw new BadRequestException("Password must contain at least: one uppercase letter, one lowercase letter, one digit, one special character and minimum 8 characters");
         }
-        if(userRepository.existsByEmail(userDTO.getEmail())){
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
 
             throw new BadRequestException("This email is already used!");
         }
-
 
         User user = new User();
 
@@ -60,95 +59,112 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setIsActive(true);
 
-        if (userDTO.getRole()== Role.USER){
+        if (userDTO.getRole() == Role.USER) {
 
             user.setRole(Role.USER);
             userRepository.save(user);
 
-        }else {
+        } else {
 
             user.setRole(Role.COMPANY);
             userRepository.save(user);
         }
 
 
-        UserDTO userCreated = modelMapper.map(user,UserDTO.class);
+        UserDTO userCreated = modelMapper.map(user, UserDTO.class);
         userCreated.setPassword(null);
 
-    return userCreated;
+        return userCreated;
     }
 
     //DE MODIFICAT
     @Override
     public UserDTO loginUser(UserDTO userDTO) throws NotFoundException, BadRequestException {
 
-        if(userDTO.getEmail()==null || userDTO.getEmail().isEmpty() || userDTO.getPassword()==null || userDTO.getPassword().isEmpty()) {
+        if (userDTO.getEmail() == null || userDTO.getEmail().isEmpty() || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
 
             throw new BadRequestException("Please provide credentials!");
         }
 
         User userRepo = userRepository.findByEmail(userDTO.getEmail());
 
-        if(userRepo!=null) {
+        if (userRepo != null) {
+
             if (passwordEncoder.matches(userDTO.getPassword(), userRepo.getPassword())) {
 
-                return modelMapper.map(userRepo,UserDTO.class);
+                if (!userRepo.getIsActive()) throw new BadRequestException("This account is disabled!");
+
+                UserDTO userReturn = modelMapper.map(userRepo, UserDTO.class);
+                userReturn.setPassword(null);
+
+                return userReturn;
             }
         }
 
-       throw new NotFoundException("The credentials provided are incorrect!");
+        throw new NotFoundException("The credentials provided are incorrect!");
 
     }
+
     //DE MODIFICAT
     @Override
     public UserDTO getUser(Integer userId) throws NotFoundException {
 
         Optional<User> userOptional = userRepository.findById(userId);
-        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+        User user = userOptional.orElseThrow(() -> new NotFoundException("User not found!"));
 
-        return modelMapper.map(user,UserDTO.class);
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        userDTO.setPassword(null);
+
+        return userDTO;
     }
 
     @Override
     public UserDTO updateUser(Integer userId, UserDTO userDTO) throws NotFoundException, BadRequestException {
 
         Optional<User> userOptional = userRepository.findById(userId);
-        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+        User user = userOptional.orElseThrow(() -> new NotFoundException("User not found!"));
 
-        if(userDTO.getEmail()!=null){
+        if (userDTO.getEmail() != null) {
 
             if (!userRepository.existsByEmail(userDTO.getEmail())) {
                 user.setEmail(userDTO.getEmail());
-            }else{
+            } else {
                 throw new BadRequestException("This email is already used!");
             }
 
         }
 
-        if(userDTO.getPassword()!=null){
+        if (userDTO.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
 
-        return modelMapper.map(user,UserDTO.class);
+        if (userDTO.getIsActive() != null) {
+            user.setIsActive(userDTO.getIsActive());
+        }
+
+        UserDTO userReturn = modelMapper.map(user, UserDTO.class);
+        userReturn.setPassword(null);
+
+        return userReturn;
     }
 
     //DE MODIFICAT
-    @Override
-    public UserDTO deleteUser(Integer userId) throws NotFoundException {
-
-        Optional<User> userOptional = userRepository.findById(userId);
-        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
-
-        userRepository.delete(user);
-
-        return modelMapper.map(user,UserDTO.class);
-    }
+//    @Override
+//    public UserDTO disableUser(Integer userId) throws NotFoundException {
+//
+//        Optional<User> userOptional = userRepository.findById(userId);
+//        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+//
+//        user.setIsActive(false0);
+//
+//        return modelMapper.map(user,UserDTO.class);
+//    }
 
     @Override
     public void reportFeedback(Integer userId, Integer feedbackId) throws NotFoundException {
 
         Optional<User> userOptional = userRepository.findById(userId);
-        User user = userOptional.orElseThrow(()-> new NotFoundException("User not found!"));
+        User user = userOptional.orElseThrow(() -> new NotFoundException("User not found!"));
 
         Map<String, Integer> params = new HashMap<>();
         params.put("feedback", feedbackId);
